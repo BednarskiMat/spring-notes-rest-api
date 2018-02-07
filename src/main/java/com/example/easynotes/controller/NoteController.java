@@ -11,25 +11,27 @@ import javax.validation.Valid;
 import javax.xml.ws.Response;
 
 @RestController
+@CrossOrigin(origins = "*" )
 @RequestMapping("/api")
 public class NoteController {
 
     @Autowired
     NotesRepository noteRepository;
     // get all notes
-
+    @CrossOrigin(origins = "*" )
     @GetMapping("/notes")
     public List<Note> getAllNotes(){
         return noteRepository.findAll();
     }
 
     // create a new note
+    @CrossOrigin(origins = "*" )
     @PostMapping("/notes")
     public Note createNote(@Valid @RequestBody Note note) {
         return noteRepository.save(note);
     }
     //get a single note
-
+    @CrossOrigin(origins = "*" )
     @GetMapping("/notes/{id}")
     public ResponseEntity<Note> getNoteById(@PathVariable(value = "id") Long noteId){
         Note note = noteRepository.findOne(noteId);
@@ -40,6 +42,7 @@ public class NoteController {
     }
 
     //update a note
+    @CrossOrigin(origins = "*" )
     @PutMapping("/notes/{id}")
     public ResponseEntity<Note> updateNote(@PathVariable(value = "id") Long noteId, @Valid @RequestBody Note noteDetails){
         Note note = noteRepository.findOne(noteId);
@@ -56,6 +59,7 @@ public class NoteController {
     }
 
     //delete a note
+    @CrossOrigin(origins = "*" )
     @DeleteMapping("/notes/{id}")
     public ResponseEntity<Note> deleteNote(@PathVariable(value = "id") Long noteId) {
         Note note = noteRepository.findOne(noteId);
